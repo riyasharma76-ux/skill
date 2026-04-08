@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Skills</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #skillInput {
+            padding: 8px;
+            width: 200px;
+        }
+
+        #addBtn {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 8px;
+            margin: 5px 0;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        li:hover {
+            background-color: #ffdddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Skills</h1>
+
+    <input type="text" id="skillInput" placeholder="Enter a skill">
+    <button id="addBtn">Add Skill</button>
+
+    <ul id="skillList">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>Communication</li>
+    </ul>
+
+    <script>
+        const addBtn = document.getElementById("addBtn");
+        const skillInput = document.getElementById("skillInput");
+        const skillList = document.getElementById("skillList");
+
+        // Function to add skill
+        addBtn.addEventListener("click", function () {
+            const skillText = skillInput.value.trim();
+
+            if (skillText !== "") {
+                const li = document.createElement("li");
+                li.textContent = skillText;
+
+                // Remove skill on click
+                li.addEventListener("click", function () {
+                    skillList.removeChild(li);
+                });
+
+                skillList.appendChild(li);
+                skillInput.value = "";
+            }
+        });
+
+        // Add remove functionality to existing skills
+        const existingSkills = document.querySelectorAll("#skillList li");
+        existingSkills.forEach(function (item) {
+            item.addEventListener("click", function () {
+                skillList.removeChild(item);
+            });
+        });
+    </script>
+
+</body>
+</html>
